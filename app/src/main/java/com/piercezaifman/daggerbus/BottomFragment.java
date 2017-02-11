@@ -21,6 +21,20 @@ public class BottomFragment extends BaseFragment {
         return new BottomFragment();
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        // listen for messages from the top
+        Subscription subscription = App.getBusComponent().getTopSubject().subscribe((message) -> {
+            if (mMessageView != null) {
+                mMessageView.setText(message);
+            }
+        });
+
+        getCompositeSubscription().add(subscription);
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -32,13 +46,6 @@ public class BottomFragment extends BaseFragment {
             // send a message to subscribers of the bottom
             App.getBusComponent().getBottomSubject().onNext(getString(R.string.hello_from_bottom));
         });
-
-        // listen for messages from the top
-        Subscription subscription = App.getBusComponent().getTopSubject().subscribe((message) -> {
-            mMessageView.setText(message);
-        });
-
-        getCompositeSubscription().add(subscription);
 
         return v;
     }
