@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Dagger Bus</string>
+
+    <string name="press_me">Press me!</string>
+</resources>
