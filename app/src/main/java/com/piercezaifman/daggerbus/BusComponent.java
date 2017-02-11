@@ -18,7 +18,4 @@ public interface BusComponent {
 
     @Named(BusModule.PROVIDER_BOTTOM_SUBJECT)
     PublishSubject<String> getBottomSubject();
-
-    void inject(TopFragment fragment);
-    void inject(BottomFragment fragment);
 }
