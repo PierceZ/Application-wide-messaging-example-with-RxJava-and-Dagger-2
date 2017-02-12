@@ -1,0 +1,1 @@
+Example of how to communicate across an application with Dagger 2 and RxJava.
